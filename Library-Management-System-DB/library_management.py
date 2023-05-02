@@ -7,7 +7,6 @@ def execute_query(query):
         connection.commit()
         return cursor.fetchall()
 
-# create the librarian table
 execute_query("""CREATE TABLE librarian (
     libid INTEGER PRIMARY KEY,
     fname VARCHAR(20) NOT NULL,
@@ -16,7 +15,7 @@ execute_query("""CREATE TABLE librarian (
     phone INTEGER NOT NULL
 );""")
 
-# insert data into the librarian table
+
 
 execute_query(""" INSERT INTO librarian VALUES (1, 'Haleigh','Kleopatros','becefo@game4hr.com',096265606136);""")
 execute_query(""" INSERT INTO librarian VALUES (2, ' Zulfiqar','Athelstan','tgi@asifboot.com',096264170017 );""")
@@ -24,7 +23,7 @@ execute_query(""" INSERT INTO librarian VALUES (3, 'Isolda',' Karter','dufc99@bt
 execute_query("""INSERT INTO librarian VALUES (4, 'Walhberct', 'Khava', 'susankr@lolaamaria.art', 96265609057);""")
 execute_query(""" INSERT INTO librarian VALUES (5, 'Tuor','Helen','nashk@wpdork.com',096264898101);""")
 
-# create the member table
+
 execute_query("""CREATE TABLE member (
     member_id INTEGER PRIMARY KEY NOT NULL,
     first_name VARCHAR(30),
@@ -35,14 +34,14 @@ execute_query("""CREATE TABLE member (
     FOREIGN KEY (librarian_id) REFERENCES librarian(libid)
 );""")
 
-# insert data into the member table
+
 execute_query("""INSERT INTO member VALUES (1,'Damon','Paine','6-jan-2017',08055546753,4);""")
 execute_query("""INSERT INTO member VALUES (2,'Rimsha','Travis','02-Feb-2018',08055583174,3);""")
 execute_query("""INSERT INTO member VALUES (3,'Nicolle','Hope','11-Dec-2019',07955519049,5);""")
 execute_query("""INSERT INTO member VALUES (4,'Devon','Spencer','21-Mar-2020',07955583528,1);""")
 execute_query("""INSERT INTO member VALUES (5, 'Karis', 'Fenton', '2016-04-15', 7755501498, 1);""")
 
-# create the publisher table
+
 execute_query("""CREATE TABLE publisher (
     publisher_id INTEGER PRIMARY KEY,
     name VARCHAR(20),
@@ -57,7 +56,7 @@ execute_query("""INSERT INTO publisher VALUES (3,'Jim Kwik','kwik@hotmail.com','
 execute_query("""INSERT INTO publisher VALUES (4,'Cal Newport','cal@yahoo.com','USA');""")
 execute_query("""INSERT INTO publisher VALUES (5, 'Norman Vincent Peale', 'peale@gmail.com', 'USA');""")
 
-# create the book table
+
 execute_query("""CREATE TABLE book (
     book_id INTEGER PRIMARY KEY NOT NULL,
     title VARCHAR(30),
@@ -70,14 +69,14 @@ execute_query("""CREATE TABLE book (
     FOREIGN KEY (librarian_id) REFERENCES librarian(libid)
 );""")
 
-# insert data into the book table
+
 execute_query("""INSERT INTO book VALUES (1,'Ghost In The Wires',0,1,2,2);""")
 execute_query("""INSERT INTO book VALUES (2,'Atomic Habits',1,2,2,1);""")
 execute_query("""INSERT INTO book VALUES (3,'Atomic Habits',1,3,1,5);""")
 execute_query("""INSERT INTO book VALUES (4,'Deep Work',1,4,5,3);""")
 execute_query("""INSERT INTO book VALUES (5, 'The Power Of Positive Thinking', 1, 5, 4, 4);""")
 
-# function to check if book is available
+
 def check_book_availability(book_name):
     result = execute_query(f"SELECT availability FROM book WHERE title = '{book_name}'")
     if result:
